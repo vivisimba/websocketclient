@@ -23,6 +23,7 @@ def standardDic(dic):
 # 设备组添加逻辑设备
 def addLogicToGroup(logicIdList, addlogictogroupPath):
     errDic = {}
+    num = 1
     for i in logicIdList:
         payloadDic = CONFIG.ADD_LOGIC_TO_GROUP["payload"]
         payloadDic["LogicDeviceID"] = i
@@ -34,7 +35,8 @@ def addLogicToGroup(logicIdList, addlogictogroupPath):
         if resDic["Code"] != 1:
             errDic[i] = resDic
         else:
-            print "Add %s to %s success." % (i, payloadDic["GroupID"])
+            print "Add %s to %s success. %d" % (i, payloadDic["GroupID"], num)
+            num = num + 1
     with open(addlogictogroupPath, "w") as errFile:
         for k, v in errDic.items():
             errFile.write(k + ":\n")
@@ -58,7 +60,7 @@ def bundDeviceAndLogic(bundDic, bunderrfilePath):
         payloadDic["DeviceID"] = v
         payloadDic["DeviceName"] = nameStr
 
-        调用接口
+        # 调用接口
         response = requests.request(
             "POST", CONFIG.BUND_LOGIC_DEVICE["url"],
             data=json.dumps(payloadDic),

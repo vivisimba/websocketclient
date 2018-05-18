@@ -19,8 +19,8 @@ def on_message(ws, message):
     #     print message
     resDic = json.loads(message)
     print resDic
-    # filePath = os.path.join(r"F:\testMessage",resDic["PersonId"])
-    filePath = os.path.join(r"/simba_monitor", resDic["PersonId"])
+    filePath = os.path.join(r"F:\testMessage",resDic["PersonID"])
+    # filePath = os.path.join(r"/simba_monitor", resDic["PersonId"])
     with open(filePath, 'a') as f:
         # timeStr = str(time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime()))
         timeStr = str(int(round(time.time() * 1000)))
