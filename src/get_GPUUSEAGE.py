@@ -13,7 +13,7 @@ import time
 
 
 # 查看的时间间隔
-deltaTime = 60
+deltaTime = 2
 
 
 # 本机执行命令，返回shell执行结果
@@ -112,6 +112,8 @@ def makeFile(infoDic, fileName):
                infoDic["registerRanker"],
                infoDic["clusterRanker"]
            )
+    timeStr = str(int(round(time.time() * 1000)))
+    line = timeStr + " " + line
     # print line
     with open(filePath, "a") as f:
         f.write(line)
